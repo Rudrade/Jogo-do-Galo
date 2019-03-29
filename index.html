@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Jogo do Galo</title>
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+    </head>
+    <body>
+        <main>
+            <h1>Jogo do Galo</h1>
+            <table align="center">
+                <tr>
+                    <th><img class="tabuleiro" id ="00" src="images/default.png"></th>
+                    <th><img class="tabuleiro" id ="01" src="images/default.png"></th>
+                    <th><img class="tabuleiro" id ="02" src="images/default.png"></th>
+                </tr>
+                <tr>
+                    <th><img class="tabuleiro" id ="10" src="images/default.png"></th>
+                    <th><img class="tabuleiro" id ="11" src="images/default.png"></th>
+                    <th><img class="tabuleiro" id ="12" src="images/default.png"></th>
+                </tr>
+                <tr>
+                    <th><img class="tabuleiro" id ="20" src="images/default.png"></th>
+                    <th><img class="tabuleiro" id ="21" src="images/default.png"></th>
+                    <th><img class="tabuleiro" id ="22" src="images/default.png"></th>
+                </tr>
+            </table>
+            <div id="score">
+                <h2 id="vencedor"></h2>
+                <h3><img id="x" src="images/x.png"> <span id="j1">Jogador 1:</span> <span id="total1"></span></h3>
+                <h3><img id="o" src="images/o.png"> <span id="j2">Jogador 2:</span> <span id="total2"></span></h3>
+                <h3><span id="empate">Empate:</span> <span id="totalE"></span></h3>
+                <h3><span id="turno">A jogar:</span> <img id="turnoI" src="images/x.png"></h3>
+            </div>
+            <div id="opcoes">
+                <h2>Opções</h2>
+                <button id="reset" type="button" value="reset">Recomeçar</button><br>
+            </div>
+        </main>
+    </body>
+    <script type="text/javascript" language="javascript" src="script.js"></script>
+</html>
