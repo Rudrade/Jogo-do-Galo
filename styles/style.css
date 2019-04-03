@@ -34,7 +34,7 @@ img{
     font-family: "Allerta Stencil", sans-serif;
 }
 
-#reset { 
+.button { 
     width: 108px;
     height: 44px;
 }
