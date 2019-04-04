@@ -109,12 +109,10 @@ function computadorAI() {
                 }
               }
               else {
-                console.log(copiarTabuleiros());
-                var tabuleiroAI2 = copiarTabuleiros();
-                console.log(tabuleiroAI2);
-                tabuleiroAI2[i][y] = imagemO;
                 for (var q = 0; q < 3; q++)  {
                   for (var w = 0; w < 3; w++) {
+                    var tabuleiroAI2 = copiarTabuleiros();
+                    tabuleiroAI2[i][y] = imagemO;
                     if (tabuleiroAI2[q][w] == transparente) {
                       tabuleiroAI2[q][w] = imagemO;
                       if (validacao(tabuleiroAI2, true)) {
