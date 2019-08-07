@@ -11,18 +11,19 @@ var estadoJogo = true;
 var pontuacaoJ1 = 0, pontuacaoJ2 = 0, pontuacaoE = 0;
 var jogadas = 0;
 var comp = false;
-var imagemInicial;
 
 function computador() {
-  console.log("jogadas: " + jogadas);
   if (jogadas == 1) {
-    if (tabuleiro[0][0].src == imagemX || tabuleiro[0][2].src == imagemX || tabuleiro[2][0].src == imagemX || tabuleiro[2][2].src == imagemX) {
+    if (tabuleiro[1][1].src == imagemX) {
+      tabuleiro[0][0].src = imagemO;
+      jogadas++;
+    } else {
       tabuleiro[1][1].src = imagemO;
       jogadas++;
-      imagemInicial = tabuleiro[1][1];
     }
   } else {
-    T:if (imagemInicial == tabuleiro[1][1]) {
+    T:if (true) {
+      // Verifica se o pc ganha
       for (var column = 0; column < 3; column++) {
         for (var row = 0; row < 3; row++) {
           if (tabuleiro[column][row].src == transparente) {
@@ -30,12 +31,12 @@ function computador() {
             tab[column][row] = imagemO;
             if (validacao(tab, true)) {
               tabuleiro[column][row].src = imagemO;
-              validacao(tabuleiro, false);
               break T;
             }
           }
         }
       }
+      // Verifica se o jogador ganha
       for (var column = 0; column < 3; column++) {
         for (var row = 0; row < 3; row++) {
           if (tabuleiro[column][row].src == transparente) {
@@ -43,23 +44,24 @@ function computador() {
             tab[column][row] = imagemX;
             if (validacao(tab, true)) {
               tabuleiro[column][row].src = imagemO;
-              validacao(tabuleiro, false);
               break T;
             }
           }
         }
       }
+      // Põe a sorte
       for (var column = 0; column < 3; column++) {
         for (var row = 0; row < 3; row++) {
           if (tabuleiro[column][row].src == transparente) {
             tabuleiro[column][row].src = imagemO;
-            validacao(tabuleiro, false);
             break T;
           }
         }
       }
     }
   }
+  jogador = 3;
+  validacao(copiarTabuleiros(), false);
   jogador = 1;
   document.getElementById("turnoI").src = imagemX;
 }
@@ -101,12 +103,10 @@ function validacao(tabuleiroVal, bdVal) {
       document.getElementById("totalE").innerHTML = ++pontuacaoE;
       estadoJogo = false;
     }
-  }
-  else {
+  } else {
     if (jogador == 1) {
       document.getElementById("total1").innerHTML = ++pontuacaoJ1;
-    }
-    else {
+    } else {
       document.getElementById("total2").innerHTML = ++pontuacaoJ2;
     }
   }
@@ -132,8 +132,7 @@ function mudarImagem(quadrado) {
         computador();
       }
       document.getElementById("turnoI").src = imagemO;
-    }
-    else if (jogador == 2 && quadrado.src == transparente) {
+    } else if (jogador == 2 && quadrado.src == transparente) {
       quadrado.src = imagemO;
       validacao(copiarTabuleiros(), false);
       jogador = 1;
@@ -147,17 +146,17 @@ function recomecar() {
   jogadas = 0;
   estadoJogo = true;
 
-  for (var i = 0; i < 3; i++) {
-    for (var y = 0; y < 3; y++) {
-      tabuleiro[i][y].src = transparente;
+  for (var column = 0; column < 3; column++) {
+    for (var row = 0; row < 3; row++) {
+      tabuleiro[column][row].src = transparente;
     }
   }
 }
 
 window.onload = function() {
-  for (var i = 0; i < 3; i++) {
-    for (var y = 0; y < 3; y++) {
-      tabuleiro[i][y].addEventListener("click", function () {
+  for (var column = 0; column < 3; column++) {
+    for (var row = 0; row < 3; row++) {
+      tabuleiro[column][row].addEventListener("click", function () {
         mudarImagem(this);
       });
     }
@@ -169,6 +168,7 @@ window.onload = function() {
     comp = true;
     estadoJogo = true;
     jogadas = 0;
+    document.getElementById("j2").innerHTML = "Computador:";
   });
 
   document.getElementById("reset").addEventListener("click", function () {
